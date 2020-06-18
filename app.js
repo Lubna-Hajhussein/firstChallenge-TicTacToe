@@ -100,24 +100,24 @@ function checkDiagonallyFromLeftToRight(squareIndex){
 function checkDiagonallyFromRightToLeft(){
     var isAllX=0
     var isAllO=0 
-     for(var i=allRows.length-1;i>=0;i--){
-        for(var j=0;j<=allRows.length-1;j++){
-            var square = allRows[j].querySelectorAll('td')[i]
-            if(square.textContent==='X'){isAllX++}
-            if(square.textContent==='O'){isAllO++}
-        }
+
+    var count =allRows.length-1
+    for(var i=0;i<allRows.length;i++){
+        var square = allRows[i].querySelectorAll('td')[count]
+        if(square.textContent==='X'){isAllX++}
+        if(square.textContent==='O'){isAllO++}
+        count--
     }
     if(isAllX===3||isAllO===3){
         var count =allRows.length-1
-        // allRows[0].querySelectorAll('td')[2].style = "background-color: yellow;"
-        // allRows[1].querySelectorAll('td')[1].style = "background-color: yellow;"
-        // allRows[2].querySelectorAll('td')[0].style= "background-color: yellow;"
         allRows.forEach(function(row){
            var square = row.querySelectorAll('td')[count]
            square.style = "background-color: yellow;"
            count--
         })
      }
+    console.log(isAllX)
+    console.log(isAllO)
 }
 // Implement the rules of Tic Tac Toe
 // Before placing an X or O, ensure the clicked board square is empty. If the position is
