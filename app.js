@@ -1,7 +1,7 @@
 var allRows =document.querySelectorAll('tr')
 var isXorY = false
 allRows.forEach(function(row,i){
-   row.querySelectorAll('td').forEach(function(square){
+   row.querySelectorAll('td').forEach(function(square,squareIndex){
        square.addEventListener('click',function(e){
            //check if the square is empty
            if(square.textContent==='X'||square.textContent==='O'){
@@ -15,6 +15,7 @@ allRows.forEach(function(row,i){
             isXorY = 'O'
         }
         checkHorizontallyForOneRow(i)
+        checkVerticallyForOneColumn(squareIndex)
        })
    
    })
@@ -58,11 +59,13 @@ function checkVerticallyForOneColumn(squareIndex){
       })
   })
   if(isAllX===3||isAllO===3){
-    console.log('hi')
- allRows[rowIndex].querySelectorAll('td').forEach(function(square){
-    square.style = "background-color: yellow;"
-     
-  })
+allRows.forEach(function(row){
+    row.querySelectorAll('td').forEach(function(square,i){
+        if(i===squareIndex){
+            square.style = "background-color: yellow;"
+        }
+    })
+})
 }
 }
 // Implement the rules of Tic Tac Toe
