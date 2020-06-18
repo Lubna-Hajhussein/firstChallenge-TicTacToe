@@ -6,8 +6,10 @@ allRows.forEach(function(row,i){
     
        square.addEventListener('click',function(e){
            //check if the square is empty 
+         
            if(checkHorizontallyForAllRows()||checkVerticallyForAllColumns()||checkDiagonallyFromLeftToRight()||checkDiagonallyFromRightToLeft()){
-               return 'the game is end'
+               alert('the game is end')
+               return;
            } 
            if(square.textContent==='X'||square.textContent==='O'){
                return square.textContent=square.textContent
@@ -26,12 +28,23 @@ allRows.forEach(function(row,i){
             }
         }
     }
-   
+    
        })
    
    })
   
 })
+
+document.querySelector('#reset').addEventListener('click',function(e){
+  reStartTheGame()
+})
+function reStartTheGame(){
+    allRows.forEach(function(row){
+        row.querySelectorAll('td').forEach(function(square){
+            square.innerHTML=`<button></button>`
+        })
+    })
+}
 //check horizontally 
 //1-check for one row
 //console.log(allRows[0].querySelectorAll('td'))
@@ -147,8 +160,6 @@ function checkDiagonallyFromRightToLeft(){
            count--
         })
      }
-    console.log(isAllX)
-    console.log(isAllO)
     return checkMe
 }
 // Implement the rules of Tic Tac Toe
