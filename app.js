@@ -34,7 +34,14 @@ allRows.forEach(function(row,i){
    })
   
 })
-
+document.querySelector('#one').addEventListener('change',function(e){
+   document.querySelector('#x').textContent = e.target.value
+   e.target.value = ""
+})
+document.querySelector('#tow').addEventListener('change',function(e){
+    document.querySelector('#o').textContent = e.target.value
+    e.target.value = ""
+ })
 document.querySelector('#reset').addEventListener('click',function(e){
   reStartTheGame()
 })
@@ -61,6 +68,12 @@ function checkHorizontallyForOneRow(rowIndex){
       }
    })
    if(isAllX===3||isAllO===3){
+       if(isAllX===3){
+           document.querySelector('#xScore').textContent=1
+       }
+       if(isAllO===3){
+        document.querySelector('#oScore').textContent=1
+    }
        checkMe=true
     allRows[rowIndex].querySelectorAll('td').forEach(function(square){
        square.style = "background-color: yellow;"
@@ -95,6 +108,12 @@ function checkVerticallyForOneColumn(squareIndex){
       })
   })
   if(isAllX===3||isAllO===3){
+    if(isAllX===3){
+        document.querySelector('#xScore').textContent=1
+    }
+    if(isAllO===3){
+     document.querySelector('#oScore').textContent=1
+ }
       checkMe=true
 allRows.forEach(function(row){
     row.querySelectorAll('td').forEach(function(square,i){
@@ -130,6 +149,12 @@ function checkDiagonallyFromLeftToRight(){
        if(square.textContent==='O'){isAllO++}
     })
      if(isAllX===3||isAllO===3){
+        if(isAllX===3){
+            document.querySelector('#xScore').textContent=1
+        }
+        if(isAllO===3){
+         document.querySelector('#oScore').textContent=1
+     }
          checkMe = true
         allRows.forEach(function(row,rowIndex){
             var square = row.querySelectorAll('td')[rowIndex]
@@ -152,6 +177,12 @@ function checkDiagonallyFromRightToLeft(){
         count--
     }
     if(isAllX===3||isAllO===3){
+        if(isAllX===3){
+            document.querySelector('#xScore').textContent=1
+        }
+        if(isAllO===3){
+         document.querySelector('#oScore').textContent=1
+     }
         checkMe = true
         var count =allRows.length-1
         allRows.forEach(function(row){
@@ -162,9 +193,3 @@ function checkDiagonallyFromRightToLeft(){
      }
     return checkMe
 }
-// Implement the rules of Tic Tac Toe
-// Before placing an X or O, ensure the clicked board square is empty. If the position is
-//  already occupied, don't place an X or O and do not move on to the next player's turn.
-// After each play, look for 3 in a row, either diagonally, horizontally and vertically.
-//  Also be sure to check to see if the board is full.
-// If either condition is met, display a message and do not allow any additional plays.
