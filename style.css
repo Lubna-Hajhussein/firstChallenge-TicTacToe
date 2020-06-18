@@ -1,0 +1,12 @@
+#first-row{
+    background-color: blue;
+}
+button{
+    shape-outside: -webkit-image-set();
+}
+
+table{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}

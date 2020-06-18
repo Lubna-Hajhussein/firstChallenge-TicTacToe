@@ -16,6 +16,8 @@ allRows.forEach(function(row,i){
         }
         checkHorizontallyForOneRow(i)
         checkVerticallyForOneColumn(squareIndex)
+        checkDiagonallyFromLeftToRight(squareIndex)
+        checkDiagonallyFromRightToLeft()
        })
    
    })
@@ -67,6 +69,55 @@ allRows.forEach(function(row){
     })
 })
 }
+}
+
+function checkDiagonallyFromLeftToRight(squareIndex){
+    //the square index could be one or two or three
+    //check 0-1-2 or check 2-1-0
+    var isAllX=0
+    var isAllO=0 
+    allRows.forEach(function(row,rowIndex){
+       var square = row.querySelectorAll('td')[rowIndex]
+       if(square.textContent==='X'){isAllX++}
+       if(square.textContent==='O'){isAllO++}
+    })
+    // //check 2-1-0
+    // for(var i=allRows.length-1;i>=0;i--){
+    //     for(var j=0;j<=allRows.length-1;j++){
+    //         var square = allRows[j].querySelectorAll('td')[i]
+    //         if(square.textContent==='X'){isAllX++}
+    //         if(square.textContent==='O'){isAllO++}
+    //     }
+    // }
+     if(isAllX===3||isAllO===3){
+        allRows.forEach(function(row,rowIndex){
+            var square = row.querySelectorAll('td')[rowIndex]
+            square.style = "background-color: yellow;"
+         })
+     }
+}
+
+function checkDiagonallyFromRightToLeft(){
+    var isAllX=0
+    var isAllO=0 
+     for(var i=allRows.length-1;i>=0;i--){
+        for(var j=0;j<=allRows.length-1;j++){
+            var square = allRows[j].querySelectorAll('td')[i]
+            if(square.textContent==='X'){isAllX++}
+            if(square.textContent==='O'){isAllO++}
+        }
+    }
+    if(isAllX===3||isAllO===3){
+        var count =allRows.length-1
+        // allRows[0].querySelectorAll('td')[2].style = "background-color: yellow;"
+        // allRows[1].querySelectorAll('td')[1].style = "background-color: yellow;"
+        // allRows[2].querySelectorAll('td')[0].style= "background-color: yellow;"
+        allRows.forEach(function(row){
+           var square = row.querySelectorAll('td')[count]
+           square.style = "background-color: yellow;"
+           count--
+        })
+     }
 }
 // Implement the rules of Tic Tac Toe
 // Before placing an X or O, ensure the clicked board square is empty. If the position is
